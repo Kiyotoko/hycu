@@ -10,7 +10,7 @@
     "make": "electron-forge make"
   },
   "author": "karlz",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "knex": "^2.5.1",

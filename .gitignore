@@ -5,6 +5,8 @@ dist/
 out/
 *linux-x64/
 *win32-x64/
+package-lock.json
+data.db
 
 # Log files
 *.tgz

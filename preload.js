@@ -11,9 +11,9 @@ async function create(author, title, content) {
 }
 
 async function boot() {
-  try {
-	const exists = await knex.schema.hasTable('articles')
-  	if (!exists) {
+  	try {
+		const exists = await knex.schema.hasTable('articles')
+		if (!exists) {
 			await knex.schema.createTable('articles', (table) => {
 				table.increments('id');
 				table.string('author');
@@ -49,12 +49,13 @@ async function init() {
 		const rows = await knex('articles')
 			.select('id', 'title');
 		for (let row of rows) {
-			let element = document.createElement('li')			
+			let element = document.createElement('div')		
 			element.addEventListener('click', event => {
 				articleId = row.id
 				preview()
 			})
 			element.innerText = row.title
+			element.classList.add('sidebar-item')
 			container.appendChild(element)
 		}
 	} catch (e) {
@@ -77,15 +78,15 @@ async function setContent(content) {
 window.addEventListener('DOMContentLoaded', () => {
 	init()
 
-	document.getElementById('title-editor').addEventListener('change', change => {
+	document.getElementById('editor-title').addEventListener('change', change => {
 		setTitle(change.target.value)
 		preview()
 	})
-	document.getElementById('author-editor').addEventListener('change', change => {
+	document.getElementById('editor-author').addEventListener('change', change => {
 		setAuthor(change.target.value)
 		preview()
 	})	
-	document.getElementById('content-editor').addEventListener('change', change => {
+	document.getElementById('editor-content').addEventListener('change', change => {
 		setContent(change.target.value)
 		preview()
 	})
