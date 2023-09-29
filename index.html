@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
+    <link rel="stylesheet" href="./index.css">
+    <title>Hy Cu!</title>
+  </head>
+  <body>
+    <div class="flexbox-container">
+      <div class="sidebar">
+        <nav>
+          <ul id="articles">
+          </ul>
+        </nav>
+      </div>
+      <div class="main">
+        <input type="text" id="title-editor">
+        <input type="text" id="author-editor">
+        <input type="text" id="content-editor">
+        <p id="preview"></p>
+      </div>
+    </div>
+  </body>
+  <script src="./renderer.js"></script>
+</html> 
