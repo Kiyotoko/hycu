@@ -1,8 +1,7 @@
 :root {
-    --background-color: white;
-    --accent-color: rgb(104, 104, 181);
-    
-    --input-border: rgb(104, 104, 181);
+    --background-color: #fff;
+    --accent-color: #66b;
+
     --input-focus-h: 245;
     --input-focus-s: 100%;
     --input-focus-l: 42%;
@@ -17,8 +16,8 @@ body {
     font-family: inherit;
     padding: 5px;
     margin: 8px;
-    background-color: #fff;
-    border: 2px solid var(--input-border);
+    background-color: var(--background-color);
+    border: 2px solid var(--accent-color);
     border-radius: 4px;
     transition: 180ms box-shadow ease-in-out;
     width: 60%;
@@ -42,17 +41,29 @@ textarea.input {
 }
 
 button {
-    border-radius: 14px;
-    height: 30px;
-    border-color: var(--accent-color);
+    font-size: 14px;
+    font-family: inherit;
+    padding: 5px;
+    margin: 8px;
     background-color: var(--background-color);
+    border: 2px solid var(--accent-color);
+    border-radius: 8px;
+    transition: 180ms box-shadow ease-in-out;
+    height: 30px;
+}
+
+button:focus {
+    border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+    box-shadow: 0 0 0 3px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) +
+            40%), 0.8);
+    outline: 3px solid transparent;
 }
 
 .flexbox-container {
     display: flex;
 }
 
-.sidebar {
+#sidebar {
     flex: 1;
     color: var(--accent-color);
     background-color: var(--background-color);
@@ -65,7 +76,7 @@ button {
     padding: 5px;
 }
 
-.main {
+#main {
     flex: 2;
     color: var(--accent-color);
     background-color: var(--background-color);

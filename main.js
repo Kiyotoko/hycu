@@ -38,14 +38,19 @@ const createTable = async () => {
   }
 }
 
-ipcMain.handle('articles:get-articles', async (event) => {
+ipcMain.handle('hycu:get-articles', async (event) => {
   return await knex('articles').select('id', 'title', 'author', 'content')})
-ipcMain.handle('articles:get-article', async (event, id) => {
+ipcMain.handle('hycu:get-article', async (event, id) => {
   return await knex('articles').where({ id: id }).select('title', 'author', 'content').first()})
-ipcMain.handle('articles:set-article', async (event, id, title, author, content) => {
+ipcMain.handle('hycu:set-article', async (event, id, title, author, content) => {
   return await knex('articles').where({ id: id }).update({ title: title, author: author, content: content })})
-ipcMain.handle('articles:add-article', async (event, author, title, content) => {
-  return await knex('articles').insert({ author: author, title: title, content: content })})
+ipcMain.handle('hycu:add-article', async (event, author, title, content) => {
+  var id = -1
+  await knex('articles').insert({ author: author, title: title, content: content }).then(result => id = result[0])
+  return id
+})
+ipcMain.handle('hycu:del-article', async (event, id) => {
+  return await knex('articles').where({ id: id }).del()})
 
 app.whenReady().then(() => {
   createTable()
