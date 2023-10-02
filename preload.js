@@ -32,10 +32,24 @@ async function preview() {
 	try {
 		await knex('articles').where({ id: articleId})
 		.select('author', 'title', 'content').first().then(data => {
-			let element = document.getElementById('preview')
+			let element = document.getElementById('content')
 			element.innerHTML = '<h1>' + data.title + '</h1>'
-			element.innerHTML += '<p><i>by ' + data.author + '</i><p>'
+			element.innerHTML += '<i>by ' + data.author + '</i>'
 			element.innerHTML += '<p>' + data.content + '</p>'
+		})
+	} catch (e) {
+		console.error(e)
+	}
+}
+
+async function edit() {
+	try {
+		await knex('articles').where({ id: articleId})
+		.select('author', 'title', 'content').first().then(data => {
+			let element = document.getElementById('content')
+			element.innerHTML = '<input type="text" class="input" id="editor-title" value="' + data.title + '">'
+			element.innerHTML += '<input type="text" class="input" id="editor-author" value="' + data.author + '">'
+			element.innerHTML += '<textarea id="editor-content" class="input" name="text">' + data.content + '</textarea>'
 		})
 	} catch (e) {
 		console.error(e)
@@ -89,5 +103,15 @@ window.addEventListener('DOMContentLoaded', () => {
 	document.getElementById('editor-content').addEventListener('change', change => {
 		setContent(change.target.value)
 		preview()
+	})
+
+	document.getElementById('mode').addEventListener('click', event => {
+		if (event.target.value == 'Read') {
+			preview()
+			event.target.value = 'Edit'
+		} else {
+			edit()
+			event.target.value = 'Read'
+		}
 	})
 })
