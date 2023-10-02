@@ -1,0 +1,75 @@
+:root {
+    --background-color: white;
+    --accent-color: rgb(104, 104, 181);
+    
+    --input-border: rgb(104, 104, 181);
+    --input-focus-h: 245;
+    --input-focus-s: 100%;
+    --input-focus-l: 42%;
+}
+
+body {
+    background-color: var(--background-color);
+}
+
+.input {
+    font-size: 14px;
+    font-family: inherit;
+    padding: 5px;
+    margin: 8px;
+    background-color: #fff;
+    border: 2px solid var(--input-border);
+    border-radius: 4px;
+    transition: 180ms box-shadow ease-in-out;
+    width: 60%;
+}
+
+.input:not(textarea) {
+    line-height: 1;
+    height: 20px;
+}
+
+textarea.input {
+    resize: vertical;
+    height: 150px;
+}
+
+.input:focus {
+    border-color: hsl(var(--input-focus-h), var(--input-focus-s), var(--input-focus-l));
+    box-shadow: 0 0 0 3px hsla(var(--input-focus-h), var(--input-focus-s), calc(var(--input-focus-l) +
+            40%), 0.8);
+    outline: 3px solid transparent;
+}
+
+button {
+    border-radius: 14px;
+    height: 30px;
+    border-color: var(--accent-color);
+    background-color: var(--background-color);
+}
+
+.flexbox-container {
+    display: flex;
+}
+
+.sidebar {
+    flex: 1;
+    color: var(--accent-color);
+    background-color: var(--background-color);
+    padding: 5px;
+    height: 100%;
+    width: 30%;
+}
+
+.sidebar-item {
+    padding: 5px;
+}
+
+.main {
+    flex: 2;
+    color: var(--accent-color);
+    background-color: var(--background-color);
+    padding: 5px;
+    height: 100%;
+    width: 70%;
+}
